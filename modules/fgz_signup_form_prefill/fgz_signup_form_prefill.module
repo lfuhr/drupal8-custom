@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_form_alter().
+ */
+function fgz_signup_form_prefill_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+	$query = \Drupal::request()->query;
+
+	if ($form_id == "contact_message_anmeldung_form") {
+		$form['field_kurs_veranstaltung']['widget'][0]['value']['#value'] = $query->get('event');
+		$form['field_kursbeginn']        ['widget'][0]['value']['#value'] = $query->get('beginn');
+	}
+}

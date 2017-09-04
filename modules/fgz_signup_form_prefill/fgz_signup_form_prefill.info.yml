@@ -1,0 +1,6 @@
+name: 'FGZ Signup Form Prefill'
+dependencies: {  }
+description: 'Zur Vorausfüllung des Andmeldeformulars'
+core: 8.x
+package: Custom
+type: module
