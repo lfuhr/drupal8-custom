@@ -1,0 +1,2 @@
+Gmx schickt Abwesenheitsbenachrichtigungen an "Sender" und nicht an "Reply-To". Das Module passt den "Sender" an.
+Die Anpassung nur bei gmx domains anzuwenden würde Weiterleitungen nicht berücksichtigen.

@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_mail_alter().
+ */
+function gmx_autoreply_workaround_mail_alter(&$message) {
+	if (isset($message['headers']['Reply-to'])) {
+
+		$from = $message['headers']['Reply-to'];
+
+		$message['from'] = $from;
+    	$message['headers']['From'] = $from;
+    	$message['headers']['Sender'] = $from;
+    	$message['headers']['Return-Path'] = $from;
+    	//$message['body'][] = $from; // for debugging
+    	unset($message['headers']['Reply-to']);
+	}
+}

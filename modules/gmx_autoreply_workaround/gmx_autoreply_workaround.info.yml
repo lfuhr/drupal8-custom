@@ -1,0 +1,6 @@
+name: 'GMX Autoreply Workaround'
+dependencies: {  }
+description: 'Gmx schickt Abwesenheitsbenachrichtigungen an den "Sender" und nicht an "Reply-To". Das Module passt den "Sender" an.'
+core: 8.x
+package: Custom
+type: module
