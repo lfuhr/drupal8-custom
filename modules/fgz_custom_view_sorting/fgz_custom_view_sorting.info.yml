@@ -1,0 +1,6 @@
+name: 'FGZ Custom View Sorting'
+dependencies: {  }
+description: 'Zwei Sortierungen für die Referenten und die Kurse'
+core: 8.x
+package: Custom
+type: module

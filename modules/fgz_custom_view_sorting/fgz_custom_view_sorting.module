@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implements hook_views_data_alter().
+ * https://chromatichq.com/blog/create-custom-views-sort-plugin-drupal-8
+ */
+function fgz_formular_prefill_views_data_alter(array &$data) {
+
+	$data['taxonomy_term_field_data']['sortByLastname'] = [
+		'title' => 'Nachname aus Titel extrahiert',
+		'group' => 'Content',
+		'sort' => [
+			'field' => 'sortByLastname',
+			'id' => 'sortByLastname'
+		],
+	];
+
+	$data['node__field_beginn']['absToDiffToNow'] = [
+		'title' => 'Betrag der Abweichung von jetzt',
+		'group' => 'Content',
+		'sort' => [
+			'field' => 'field_beginn_value',
+			'id' => 'absToDiffToNow'
+		],
+	];
+}
