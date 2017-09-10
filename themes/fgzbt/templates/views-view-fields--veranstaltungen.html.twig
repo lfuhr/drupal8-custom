@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set nid = fields.nid.content|striptags|trim  %}
+{% set webmaster = (fields.edit_node.content|striptags|trim is not empty) %}
+<div class="veranstaltung-ausklappbar collapsed" data-toggle="collapse" data-target="#event-id-{{nid}}">
+	{{title_prefix}}
+	{{title_suffix}}
+	<div class="veranstaltung-rechts"><span class="runter">▼</span><span class="hoch">▲</span></div>
+	<div class="veranstaltung-rechts">{{fields.field_veranstaltungstyp.content}}</div>
+	<div>{{fields.field_beginn_1.content}}</div>
+	<h4>{{ fields.title.content }}</h4>
+	{% if webmaster %}
+		<div>({{fields.edit_node.content}})</div>
+	{% endif %}
+</div>
+<div class="veranstaltung-klappe collapse" id="event-id-{{nid}}">
+	<div>{{ fields.body.content }}</div>
+	<div><strong>Termin:</strong> {{ fields.field_termin_human.content }}</div>
+	{% if fields.field_referent.content|striptags|trim is not empty %}
+	{% set typ = fields.field_veranstaltungstyp.content|striptags|trim %}
+	  	<div><strong>{% if typ == "Film mit Diskussion" %}Moderatorin{% elseif typ == "Kurs" %}Kursleiterin{% else %}Referentin{% endif %}:</strong> {{ fields.field_referent.content }}</div>
+	{% endif %}
+	
+	{% if fields.field_ort.content|striptags|trim is not empty %}
+	  	<div><strong>Ort:</strong> {{ fields.field_ort.content }}</div>
+	{% endif %}
+	<div><strong>{{fields.field_gebuehr.label -}}:</strong> {{ fields.field_gebuehr.content }}</div>
+	{% if webmaster %}
+		<div style="float:right;">{{fields.field_schlagwoerter.content}} (Nur als Webmaster sichtbar)</div>
+	{% endif %}
+	<div class="anmelde-link"><a href="/anmeldung?event={{fields.title.content|striptags|url_encode}}&beginn={{(fields.field_beginn.content ~ ": " ~ fields.field_beginn_1.content)|striptags|url_encode}}">Anmelden</a></div>
+</div>

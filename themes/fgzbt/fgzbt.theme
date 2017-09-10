@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Bootstrap sub-theme.
+ *
+ * Place your custom PHP code in this file.
+ */
+use Drupal\Core\Form\FormStateInterface;
+
+// Make variables available to page template
+function fgzbt_preprocess_page(&$variables) {
+  $site_config = \Drupal::config('system.site');
+  $variables['site_name'] = $site_config->get('name');
+  $variables['site_slogan'] = $site_config->get('slogan');
+
+  // logo needs to be placed within specified folder
+  //$variables['logopath'] = '/' . drupal_get_path('theme','mytheme') . '/logo.png';
+  $variables['site_logo'] = theme_get_setting('logo.url');
+
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+function fgzbt_theme($existing, $type, $theme, $path) {
+  return [
+    'contact_message_anmelden_form' => [
+      'render element' => 'form',
+    ],
+  ];
+}

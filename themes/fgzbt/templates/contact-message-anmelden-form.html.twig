@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+<form{{ attributes }}>
+
+	<h2>Angaben zum Kurs</h2>
+	{{ form.field_kurs_veranstaltung }}
+	{{ form.field_kursbeginn }}
+
+	<h2>Persönliche Angaben</h2>
+	{{ form.name }}
+	{{ form.mail }}
+	{{ form.field_adresse}}
+	{{ form.field_telefon }}
+	{{ form.field_foerdermitglied}}
+
+	<h2>Einzugsermächtigung</h2>
+
+	<p>Hiermit ermächtigen ich das Frauengesundheitszentrum einmalig zum Einzug der Kursgebühr nach dem SEPA-Lastschriftmandat. </p>
+
+	<p><strong>Gläubiger ID:</strong>	DE22FGZ00000483312</p>
+	{{ form.field_kontoinhaber }}
+	{{ form.field_iban }}
+	{{ form.field_freitext }}
+
+	{{ form.actions.submit }}
+	{{ form.form_build_id }}
+	{{ form.form_token }}
+	{{ form.form_id }}
+</form>
